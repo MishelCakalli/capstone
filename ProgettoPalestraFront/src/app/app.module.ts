@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './auth/login/login.component';
-import { SingupComponent } from './auth/singup/singup.component';
+import { SignupComponent } from './auth/singup/singup.component';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { AuthService } from './auth/auth.service';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
@@ -30,7 +30,7 @@ const routes: Route[] = [
   },
   {
     path: 'signup',
-    component: SingupComponent,
+    component: SignupComponent,
   }
 ]
 
@@ -40,7 +40,7 @@ const routes: Route[] = [
     NavbarComponent,
     HomeComponent,
     LoginComponent,
-    SingupComponent,
+    SignupComponent,
     LandingPageComponent
   ],
   imports: [
