@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Route, RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 import { AppComponent } from './app.component';
@@ -13,6 +15,8 @@ import { SignupComponent } from './auth/singup/singup.component';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { AuthService } from './auth/auth.service';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { AppuntamentoService } from './service/appuntamento.service';
+import { Appuntamento } from './interfaces/appuntamento';
 
 
 const routes: Route[] = [
@@ -29,7 +33,7 @@ const routes: Route[] = [
     component: LoginComponent,
   },
   {
-    path: 'signup',
+    path: 'register',
     component: SignupComponent,
   }
 ]
@@ -41,20 +45,28 @@ const routes: Route[] = [
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    
+
+    
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule, 
     HttpClientModule, 
     FormsModule, 
     RouterModule.forRoot(routes),
   ],
   providers: [
+    [AppuntamentoService],
     {
+      
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
+      
     },
+    
     AuthService
   ],
   bootstrap: [AppComponent]
