@@ -17,6 +17,7 @@ import { AuthService } from './auth/auth.service';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { AppuntamentoService } from './service/appuntamento.service';
 import { Appuntamento } from './interfaces/appuntamento';
+import { Error404Component } from './components/error404/error404.component';
 
 
 const routes: Route[] = [
@@ -35,7 +36,10 @@ const routes: Route[] = [
   {
     path: 'register',
     component: SignupComponent,
-  }
+  },{
+    path: '**',
+    component: Error404Component,
+},
 ]
 
 @NgModule({

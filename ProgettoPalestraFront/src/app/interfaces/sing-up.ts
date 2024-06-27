@@ -1,6 +1,6 @@
 export interface SignUp {
-    name : String,
-    surname: String,
+    nome : String,
+    cognome: String,
     email : String,
     password : String, 
 }
