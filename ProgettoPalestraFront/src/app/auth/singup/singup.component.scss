@@ -1,6 +1,13 @@
 h1 {
     font-family: 'Poppins', sans-serif;
 }
+.altezza{
+
+  height: 817px;
+  overflow: hidden;
+  margin: 0;
+  background-color: #0A0A0A;
+}
 
 .left {
     background-image: url('../../../assets/img/gym.png');
@@ -15,8 +22,8 @@ h1 {
 .form-container {
     margin: 10px 140px 0px 140px;
     width: 700px;
-    background: linear-gradient(#F8F9FA, #F8F9FA) padding-box,
-                linear-gradient(145deg, transparent 35%,#c4c8a3, #FED100) border-box;
+    background: linear-gradient(#0A0A0A, #0A0A0A) padding-box,
+                linear-gradient(145deg, transparent 10%,#000000,#ebcc43, #FED100) border-box;
     border: 7px solid transparent;
     padding: 32px 24px;
     font-size: 14px;
