@@ -34,11 +34,12 @@ export class HomeComponent {
       this.appuntamentoService.createAppuntamento(newAppuntamento).subscribe(
         response => {
           console.log('Prenotazione creata con successo', response);
-          // Aggiungi logica per gestire la risposta, come reindirizzare l'utente o mostrare un messaggio di successo
+            alert("Prenotazione creata con successo");
         },
         error => {
           console.error('Errore nella creazione della prenotazione', error);
-          // Aggiungi logica per gestire l'errore
+          alert("Errore nella creazione della prenotazione");
+
         }
       );
     }
