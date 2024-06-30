@@ -14,9 +14,8 @@ div {
   .container {
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(107, 130, 116, 0.25);
+    background-color: transparent;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);  
     padding: 38px;  
     filter: drop-shadow(0 30px 10px rgba(0,0,0,0.125));
     display: flex;
@@ -33,13 +32,13 @@ div {
   
   h1{
     font-family: 'Poppins', sans-serif;
-    color: #33494B;
+    color: white;
     text-transform: uppercase;
   }
   
   p {
     margin-top: 20px;
-    color: black;
+    color: white;
     font-family: 'Poppins', sans-serif;
     font-size: 1.1rem;
     line-height: 150%;
@@ -95,130 +94,131 @@ div {
 
   /* SOCIALS */
 
-  .main {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-  }
-  
-  .up {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5em;
-  }
-  
-  .down {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5em;
-  }
-  
-  .card1 {
-    width: 90px;
-    height: 90px;
-    outline: none;
-    border: none;
-    background: white;
-    border-radius: 90px 5px 5px 5px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    transition: .2s ease-in-out;
-  }
-  
-  .instagram {
-    margin-top: 1.5em;
-    margin-left: 1.2em;
-    fill: #cc39a4;
-  }
-  
-  .card2 {
-    width: 90px;
-    height: 90px;
-    outline: none;
-    border: none;
-    background: white;
-    border-radius: 5px 90px 5px 5px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    transition: .2s ease-in-out;
-  }
-  
-  .twitter {
-    margin-top: 1.5em;
-    margin-left: -.9em;
-    fill: #03A9F4;
-  }
-  
-  .card3 {
-    width: 90px;
-    height: 90px;
-    outline: none;
-    border: none;
-    background: white;
-    border-radius: 5px 5px 5px 90px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    transition: .2s ease-in-out;
-  }
-  
-  .github {
-    margin-top: -.6em;
-    margin-left: 1.2em;
-  }
-  
-  .card4 {
-    width: 90px;
-    height: 90px;
-    outline: none;
-    border: none;
-    background: white;
-    border-radius: 5px 5px 90px 5px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    transition: .2s ease-in-out;
-  }
-  
-  .discord {
-    margin-top: -.9em;
-    margin-left: -1.2em;
-    fill: #8c9eff;
-  }
-  
-  .card1:hover {
-    cursor: pointer;
-    scale: 1.1;
-    background-color: #cc39a4;
-  }
-  
-  .card1:hover .instagram {
-    fill: white;
-  }
-  
-  .card2:hover {
-    cursor: pointer;
-    scale: 1.1;
-    background-color: #03A9F4;
-  }
-  
-  .card2:hover .twitter {
-    fill: white;
-  }
-  
-  .card3:hover {
-    cursor: pointer;
-    scale: 1.1;
-    background-color: black;
-  }
-  
-  .card3:hover .github {
-    fill: white;
-  }
-  
-  .card4:hover {
-    cursor: pointer;
-    scale: 1.1;
-    background-color: #8c9eff;
-  }
-  
-  .card4:hover .discord {
-    fill: white;
-  }
+ /* SOCIALS | ABOUT US */
+ .main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.up {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+.down {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+.card1 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-radius: 90px 5px 5px 5px;
+  box-shadow: rgba(255, 255, 255, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+}
+
+.instagram {
+  margin-top: 1.5em;
+  margin-left: 1.2em;
+  fill: #cc39a4;
+}
+
+.card2 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-radius: 5px 90px 5px 5px;
+  box-shadow: rgba(255, 255, 255, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+}
+
+.twitter {
+  margin-top: 1.5em;
+  margin-left: -.9em;
+  fill: #03A9F4;
+}
+
+.card3 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-radius: 5px 5px 5px 90px;
+  box-shadow: rgba(255, 255, 255, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+}
+
+.github {
+  margin-top: -.6em;
+  margin-left: 1.2em;
+}
+
+.card4 {
+  width: 90px;
+  height: 90px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-radius: 5px 5px 90px 5px;
+  box-shadow: rgba(255, 255, 255, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .2s ease-in-out;
+}
+
+.discord {
+  margin-top: -.9em;
+  margin-left: -1.2em;
+  fill: #8c9eff;
+}
+
+.card1:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #cc39a4;
+}
+
+.card1:hover .instagram {
+  fill: white;
+}
+
+.card2:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #03A9F4;
+}
+
+.card2:hover .twitter {
+  fill: white;
+}
+
+.card3:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: black;
+}
+
+.card3:hover .github {
+  fill: white;
+}
+
+.card4:hover {
+  cursor: pointer;
+  scale: 1.1;
+  background-color: #ff948c;
+}
+
+.card4:hover .discord {
+  fill: white;
+}
   .white-color-main{
     color: #F7F7FF;
 }
