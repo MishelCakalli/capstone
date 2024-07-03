@@ -1,3 +1,5 @@
+// src/app/components/home/home.component.ts
+
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppuntamentoService } from '../../service/appuntamento.service';
@@ -17,8 +19,9 @@ export class HomeComponent {
   ) {
     this.prenotazioneForm = this.fb.group({
       data: ['', Validators.required],
-      corso: ['', Validators.required],
-      utenteId: [null]
+      oraInizio: ['', Validators.required],
+      oraFine: ['', Validators.required],
+      sala: ['', Validators.required]
     });
   }
 
@@ -27,19 +30,20 @@ export class HomeComponent {
       const newAppuntamento: Appuntamento = {
         id: 0,
         data: this.prenotazioneForm.value.data,
-        corso: this.prenotazioneForm.value.corso,
-        utenteId: this.prenotazioneForm.value.utenteId
+        oraInizio: this.prenotazioneForm.value.oraInizio,
+        oraFine: this.prenotazioneForm.value.oraFine,
+        sala: this.prenotazioneForm.value.sala
       };
 
       this.appuntamentoService.createAppuntamento(newAppuntamento).subscribe(
         response => {
-          console.log('Prenotazione creata con successo', response);
-            alert("Prenotazione creata con successo");
+          console.log('Lezione creata con successo', response);
+          alert('Lezione creata con successo');
+          this.prenotazioneForm.reset();
         },
         error => {
-          console.error('Errore nella creazione della prenotazione', error);
-          alert("Errore nella creazione della prenotazione");
-
+          console.error('Errore nella creazione della lezione', error);
+          alert('Errore nella creazione della lezione');
         }
       );
     }

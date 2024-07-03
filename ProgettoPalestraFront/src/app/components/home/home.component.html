@@ -7,19 +7,55 @@
             <h3>Prenota la tua Lezione</h3>
         </div>
         <div class="card-body text-light">
-            <form [formGroup]="prenotazioneForm" (ngSubmit)="onSubmit()">
-                <div class="form-group mb-3">
-                    <label for="data" class="form-label">Data:</label>
-                    <input id="data" formControlName="data" type="date" class="form-control">
-                </div>
-                <div class="form-group mb-3">
-                    <label for="corso" class="form-label">Corso:</label>
-                    <input id="corso" formControlName="corso" type="text" class="form-control">
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-warning" [disabled]="prenotazioneForm.invalid">Prenota</button>
-                </div>
-            </form>
+           <!-- src/app/components/home/home.component.html -->
+
+<form [formGroup]="prenotazioneForm" (ngSubmit)="onSubmit()">
+    <div class="form-group mb-3">
+      <label for="data" class="form-label">Data:</label>
+      <input id="data" formControlName="data" type="date" class="form-control">
+    </div>
+    <div class="form-group mb-3">
+      <label for="oraInizio" class="form-label">Ora di inizio:</label>
+      <select id="oraInizio" formControlName="oraInizio" class="form-control">
+        <option value="">Seleziona un'ora di inizio</option>
+        <option value="08:00">08:00</option>
+        <option value="10:00">10:00</option>
+        <option value="12:00">12:00</option>
+        <option value="14:00">14:00</option>
+        <option value="16:00">16:00</option>
+        <option value="18:00">18:00</option>
+      </select>
+    </div>
+    <div class="form-group mb-3">
+      <label for="oraFine" class="form-label">Ora di fine:</label>
+      <select id="oraFine" formControlName="oraFine" class="form-control">
+        <option value="">Seleziona un'ora di fine</option>
+        <option value="09:00">09:00</option>
+        <option value="11:00">11:00</option>
+        <option value="13:00">13:00</option>
+        <option value="15:00">15:00</option>
+        <option value="17:00">17:00</option>
+        <option value="19:00">19:00</option>
+      </select>
+    </div>
+    <div class="form-group mb-3">
+      <label for="sala" class="form-label">Sala:</label>
+      <select id="sala" formControlName="sala" class="form-control">
+        <option value="">Seleziona una sala</option>
+        <option value="Pilates">Pilates</option>
+        <option value="Sala pesi">Sala pesi</option>
+        <option value="Yoga">Yoga</option>
+      </select>
+    </div>
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-warning" [disabled]="prenotazioneForm.invalid">Prenota</button>
+    </div>
+  </form>
+  
+            
+            
+            
+            
         </div>
     </div>
     
