@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+// auth.service.ts
+
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
-import { AuthData } from '../interfaces/auth-data';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { SignUp } from '../interfaces/sing-up';
 
@@ -11,67 +13,78 @@ import { SignUp } from '../interfaces/sing-up';
 })
 export class AuthService {
 
-  apiURL = "http://localhost:8080/auth/";
-  jwtHelper = new JwtHelperService();
-  private authSub = new BehaviorSubject<AuthData | null>(null);
+  private apiURL = "http://localhost:8080/auth/";
+  private jwtHelper = new JwtHelperService();
+  private authSub = new BehaviorSubject<string | null>(null);
   user$ = this.authSub.asObservable();
-  timeout: any;
+  private timeout: any;
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  signup(data: SignUp) {
-    return this.http.post(`${this.apiURL}register`, data, { responseType: 'text' });
-  }
-
-  login(data: { email: string, password: string }) {
-    console.log("prova service");
-    return this.http.post<AuthData>(`${this.apiURL}login`, data).pipe(
-      tap((data) => {
-        alert('Login effettuato.');
-        console.log('auth data: ', data);
-      }),
-      tap((data) => {
-        this.authSub.next(data);
-        localStorage.setItem('user', JSON.stringify(data));
-        this.autologout(data);
-      }), 
-      catchError(this.errors)
+  signup(data: SignUp): Observable<string> {
+    return this.http.post(`${this.apiURL}register`, data, { responseType: 'text' }).pipe(
+      catchError(this.handleError)
     );
   }
 
-  private errors(err: any) {
-    console.log(err.error);
-    switch (err.error) {
-      case 'Email already exists':
-        return throwError('utente già presente');
-      case 'Incorrect password':
-        return throwError('password errata');
-      case 'Cannot find user':
-        return throwError('utente inesistente');
-      default:
-        return throwError('errore generico');
+  login(data: { email: string, password: string }): Observable<string> {
+    return this.http.post<string>(`${this.apiURL}login`, data, { responseType: 'text' as 'json' }).pipe(
+      tap((token: string) => {
+        console.log('auth token: ', token);
+        this.authSub.next(token);
+        localStorage.setItem('user', token);
+        this.autologout(token);
+        this.router.navigate(['/home']);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    console.error('An error occurred:', error);
+    let errorMessage = 'Errore';
+    if (error.error instanceof ErrorEvent) {
+      console.error('A client-side or network error occurred:', error.error.message);
+      errorMessage = `Errore: ${error.error.message}`;
+    } else {
+      console.error(`Backend returned code ${error.status}, body was:`, error.error);
+      if (error.error === 'Email already exists') {
+        errorMessage = 'Utente già presente';
+      } else if (error.error === 'Incorrect password') {
+        errorMessage = 'Password errata';
+      } else if (error.error === 'Cannot find user') {
+        errorMessage = 'Utente inesistente';
+      } else if (error.status === 0) {
+        errorMessage = 'Errore di connessione. Verifica la tua connessione internet.';
+      } else if (error.status >= 500) {
+        errorMessage = 'Errore del server. Riprova più tardi.';
+      }
     }
+    return throwError(errorMessage);
   }
 
   logout() {
     this.authSub.next(null);
     localStorage.removeItem('user');
+    clearTimeout(this.timeout);
     this.router.navigate(['/login']);
   }
 
   restore() {
-    const userJson = localStorage.getItem('user');
-    if (!userJson) {
-      return;
-    } else {
-      const user: AuthData = JSON.parse(userJson);
-      this.authSub.next(user);
-      this.autologout(user);
+    const token = localStorage.getItem('user');
+    if (token) {
+      this.authSub.next(token);
+      this.autologout(token);
     }
   }
 
-  autologout(user: AuthData) {
-    const dateExpiration = this.jwtHelper.getTokenExpirationDate(user.token) as Date;
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('user');
+    return !!token;
+  }
+
+  private autologout(token: string) {
+    const dateExpiration = this.jwtHelper.getTokenExpirationDate(token) as Date;
     const millisecondsExp = dateExpiration.getTime() - new Date().getTime();
     this.timeout = setTimeout(() => {
       this.logout();

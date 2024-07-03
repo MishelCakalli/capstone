@@ -2,7 +2,6 @@ export interface AuthData {
     token : string,
     user: {
         id: number,
-        username: string,
         name: string,
         surname: string,
         role: string,

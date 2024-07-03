@@ -10,7 +10,7 @@ import { AuthData } from 'src/app/interfaces/auth-data';
 })
 export class NavbarComponent {
 
-  user!: AuthData | null;
+  user!: String | null;
 
   constructor(private authSrv: AuthService) { }
 

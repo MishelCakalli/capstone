@@ -5,8 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
-
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -16,9 +14,9 @@ import { TokenInterceptor } from './auth/token.interceptor';
 import { AuthService } from './auth/auth.service';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { AppuntamentoService } from './service/appuntamento.service';
-import { Appuntamento } from './interfaces/appuntamento';
 import { Error404Component } from './components/error404/error404.component';
-
+import { AuthGuard } from './auth/auth.guard';
+import { JwtModule } from '@auth0/angular-jwt';
 
 const routes: Route[] = [
   {
@@ -28,6 +26,7 @@ const routes: Route[] = [
   {
     path: 'home',
     component: HomeComponent,
+    // canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -36,11 +35,21 @@ const routes: Route[] = [
   {
     path: 'register',
     component: SignupComponent,
-  },{
+  },
+  {
     path: '**',
     component: Error404Component,
-},
-]
+  },
+];
+
+export function tokenGetter() {
+  const userJson = localStorage.getItem('user');
+  if (userJson) {
+    const user = JSON.parse(userJson);
+    return user?.token || null;
+  }
+  return null;
+}
 
 @NgModule({
   declarations: [
@@ -50,27 +59,29 @@ const routes: Route[] = [
     LoginComponent,
     SignupComponent,
     LandingPageComponent,
-    
-
-    
+    Error404Component,
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule, 
-    HttpClientModule, 
-    FormsModule, 
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(routes),
+    // JwtModule.forRoot({
+    //   config: {
+    //     tokenGetter: tokenGetter,
+    //     allowedDomains: ['localhost:8080'],
+    //     disallowedRoutes: []
+    //   }
+    // })
   ],
   providers: [
-    [AppuntamentoService],
+    AppuntamentoService,
     {
-      
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-      
     },
-    
     AuthService
   ],
   bootstrap: [AppComponent]

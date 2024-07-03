@@ -17,19 +17,18 @@ export class TokenInterceptor implements HttpInterceptor {
     console.log("prova1");
     return this.authSrv.user$.pipe(
       take(1),
-      switchMap((user) => {
-        if (user) {
-          console.log("prova")
+      switchMap((token) => {
+        if (token) {
+          console.log("prova");
           const newReq = request.clone({
-            headers: request.headers.append('Authorization',"Bearer " + user.token)
-          })
-          // console.log(newReq);
+            headers: request.headers.append('Authorization',"Bearer " + token)
+          });
           return next.handle(newReq);
-        }
-        else {
-          return next.handle(request)
+        } else {
+          console.log("No user token found, proceeding without Authorization header.");
+          return next.handle(request);
         }
       })
-    )
-}
+    );
+  }
 }
