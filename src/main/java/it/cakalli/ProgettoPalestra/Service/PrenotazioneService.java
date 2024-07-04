@@ -33,4 +33,23 @@ public class PrenotazioneService {
     public void deleteById(Integer id) {
         prenotazioneRepository.deleteById(id);
     }
+
+
+
+
+    public List<Prenotazione> getAllPrenotazioni() {
+        return prenotazioneRepository.findAll();
+    }
+
+    public Optional<Prenotazione> getPrenotazioniById(int id) {
+        return prenotazioneRepository.findById(id);
+    }
+
+    public Prenotazione savePrenotazioni(Prenotazione prenotazione) {
+        return prenotazioneRepository.save(prenotazione);
+    }
+
+    public void deletePrenotazioni(int id) {
+        prenotazioneRepository.deleteById(id);
+    }
 }

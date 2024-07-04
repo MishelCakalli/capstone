@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class LezioneService {
+public abstract class LezioneService {
 
     @Autowired
     private LezioneRepository lezioneRepository;
@@ -33,4 +33,14 @@ public class LezioneService {
     public void deleteById(Integer id) {
         lezioneRepository.deleteById(id);
     }
+
+    public abstract List<Lezione> getAllLezioni();
+
+    public abstract Lezione getLezioneById(int id);
+
+    public abstract Lezione createLezione(Lezione lezione);
+
+    public abstract Lezione updateLezione(int id, Lezione lezione);
+
+    public abstract void deleteLezione(int id);
 }
