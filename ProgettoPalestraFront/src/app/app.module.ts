@@ -17,6 +17,8 @@ import { AppuntamentoService } from './service/appuntamento.service';
 import { Error404Component } from './components/error404/error404.component';
 import { AuthGuard } from './auth/auth.guard';
 import { JwtModule } from '@auth0/angular-jwt';
+import { AppuntamentoComponent } from './components/appuntamento/appuntamento.component';
+
 
 const routes: Route[] = [
   {
@@ -26,7 +28,7 @@ const routes: Route[] = [
   {
     path: 'home',
     component: HomeComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -35,6 +37,11 @@ const routes: Route[] = [
   {
     path: 'register',
     component: SignupComponent,
+  },
+  {
+    path: 'lezioni',
+    component: AppuntamentoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
@@ -60,6 +67,7 @@ export function tokenGetter() {
     SignupComponent,
     LandingPageComponent,
     Error404Component,
+    AppuntamentoComponent,
   ],
   imports: [
     BrowserModule,

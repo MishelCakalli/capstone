@@ -1,0 +1,27 @@
+/* styles.scss (o styles.css) */
+
+.card {
+    border-radius: 10px;
+  }
+  
+  .card-header {
+    font-size: 1.5rem;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .table {
+    background-color: #ffffff; /* Colore sfondo bianco */
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #f1f1f1; /* Colore sfondo al passaggio del mouse */
+  }
+  
+  .thead-dark th {
+    background-color: #343a40; /* Colore sfondo grigio scuro per l'intestazione */
+    color: #ffffff; /* Colore testo bianco */
+  }
+  
