@@ -30,6 +30,12 @@ public class Lezione {
     @JoinColumn(name = "istruttore_id")
     private Istruttore istruttore;
 
+    @ManyToOne
+    @JoinColumn(name = "utente_id")
+    private Utente utente;
+
     @OneToMany(mappedBy = "lezione")
     private List<Prenotazione> prenotazioni;
+
+
 }

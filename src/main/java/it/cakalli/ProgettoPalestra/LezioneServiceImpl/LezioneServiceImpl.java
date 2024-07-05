@@ -16,6 +16,7 @@ public class LezioneServiceImpl extends LezioneService {
 
     @Autowired
     public LezioneServiceImpl(LezioneRepository lezioneRepository) {
+        super();
         this.lezioneRepository = lezioneRepository;
     }
 
@@ -47,5 +48,15 @@ public class LezioneServiceImpl extends LezioneService {
     @Override
     public void deleteLezione(int id) {
         lezioneRepository.deleteById(id);
+    }
+
+
+
+
+
+
+    @Override
+    public List<Lezione> getLezioniByUtenteId(int utenteId) {
+        return lezioneRepository.findByUtenteId(utenteId);
     }
 }

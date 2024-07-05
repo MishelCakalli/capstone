@@ -54,4 +54,34 @@ public class LezioneController {
         lezioneService.deleteLezione(id);
         return ResponseEntity.noContent().build();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @GetMapping("/utente/{utenteId}")
+    public ResponseEntity<List<Lezione>> getLezioniByUtenteId(@PathVariable("utenteId") int utenteId) {
+        List<Lezione> lezioni = lezioneService.getLezioniByUtenteId(utenteId);
+        return new ResponseEntity<>(lezioni, HttpStatus.OK);
+    }
 }

@@ -8,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -27,15 +26,19 @@ public class Utente implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
+
     @Override
     public String getUsername() {
         return String.valueOf(id);
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override

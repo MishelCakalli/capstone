@@ -43,4 +43,22 @@ public abstract class LezioneService {
     public abstract Lezione updateLezione(int id, Lezione lezione);
 
     public abstract void deleteLezione(int id);
+
+
+
+
+
+
+
+
+
+    @Autowired
+    public LezioneService() {
+        this.lezioneRepository = lezioneRepository;
+    }
+
+
+    public List<Lezione> getLezioniByUtenteId(int utenteId) {
+        return lezioneRepository.findByUtenteId(utenteId);
+    }
 }
